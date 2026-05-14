@@ -1,0 +1,12 @@
+# Binary
+moneylover
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Goreleaser
+dist/
