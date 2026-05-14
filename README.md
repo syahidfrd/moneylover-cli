@@ -13,7 +13,7 @@ brew install syahidfrd/tap/moneylover-cli
 ### Go install
 
 ```bash
-go install github.com/syahidfrd/moneylover-cli@latest
+go install github.com/syahidfrd/moneylover-cli/cmd/moneylover@latest
 ```
 
 ### Shell script

@@ -19,7 +19,7 @@ The `moneylover` binary must be on `$PATH`. Install via:
 brew install syahidfrd/tap/moneylover-cli
 
 # Go install
-go install github.com/syahidfrd/moneylover-cli@latest
+go install github.com/syahidfrd/moneylover-cli/cmd/moneylover@latest
 
 # Shell script
 curl -sSL https://raw.githubusercontent.com/syahidfrd/moneylover-cli/main/install.sh | bash

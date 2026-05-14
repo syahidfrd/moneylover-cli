@@ -7,7 +7,7 @@ before:
     - go mod tidy
 
 builds:
-  - main: .
+  - main: ./cmd/moneylover
     binary: moneylover
     env:
       - CGO_ENABLED=0
