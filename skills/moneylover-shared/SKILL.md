@@ -20,6 +20,9 @@ brew install syahidfrd/tap/moneylover-cli
 
 # Go install
 go install github.com/syahidfrd/moneylover-cli@latest
+
+# Shell script
+curl -sSL https://raw.githubusercontent.com/syahidfrd/moneylover-cli/main/install.sh | bash
 ```
 
 ## Authentication
