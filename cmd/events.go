@@ -13,6 +13,9 @@ var eventsListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all events",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("list"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err

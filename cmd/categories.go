@@ -13,6 +13,9 @@ var categoriesListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all categories",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("list"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -29,6 +32,9 @@ var categoriesAddCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new category",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("add"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -50,6 +56,9 @@ var categoriesEditCmd = &cobra.Command{
 	Use:   "edit",
 	Short: "Edit a category",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("edit"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -70,6 +79,9 @@ var categoriesDeleteCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "Delete a category",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("delete"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err

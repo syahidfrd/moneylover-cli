@@ -19,6 +19,9 @@ var walletsListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all wallets",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("list"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -35,6 +38,9 @@ var walletsAddCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new wallet",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("add"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -58,6 +64,9 @@ var walletsEditCmd = &cobra.Command{
 	Use:   "edit",
 	Short: "Edit a wallet",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("edit"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -80,6 +89,9 @@ var walletsDeleteCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "Delete a wallet",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("delete"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err

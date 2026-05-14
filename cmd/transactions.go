@@ -15,6 +15,9 @@ var transactionsListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List transactions",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("list"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -35,6 +38,9 @@ var transactionsAddCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new transaction",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("add"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -57,6 +63,9 @@ var transactionsEditCmd = &cobra.Command{
 	Use:   "edit",
 	Short: "Edit a transaction",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("edit"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -80,6 +89,9 @@ var transactionsDeleteCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "Delete a transaction",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("delete"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -97,6 +109,9 @@ var transactionsDebtsCmd = &cobra.Command{
 	Use:   "debts",
 	Short: "List debts/loans",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("debts"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err

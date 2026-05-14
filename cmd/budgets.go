@@ -13,6 +13,9 @@ var budgetsListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all budgets",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("list"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -29,6 +32,9 @@ var budgetsAddCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new budget",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("add"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -52,6 +58,9 @@ var budgetsEditCmd = &cobra.Command{
 	Use:   "edit",
 	Short: "Edit a budget",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("edit"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -76,6 +85,9 @@ var budgetsDeleteCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "Delete a budget",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := checkAction("delete"); err != nil {
+			return err
+		}
 		client, err := newClient()
 		if err != nil {
 			return err

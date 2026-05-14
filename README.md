@@ -85,6 +85,29 @@ moneylover user info
 | Option | Env Var | Default | Description |
 |--------|---------|---------|-------------|
 | `--token-path` | `MONEYLOVER_TOKEN_PATH` | `~/.config/moneylover/token.json` | Path to token file |
+| `--config-path` | `MONEYLOVER_CONFIG_PATH` | `~/.config/moneylover/config.json` | Path to config file |
+
+### Allowed Actions
+
+Restrict which actions the CLI can perform. Useful for agent safety — prevent accidental deletes or edits.
+
+```bash
+# Only allow list and add
+moneylover config set-allowed-actions list,add
+
+# Show current config
+moneylover config get
+
+# Reset to allow all actions
+moneylover config reset
+```
+
+Available actions: `list`, `add`, `edit`, `delete`, `debts`, `info`, `login`, `callback`, `status`
+
+When `allowed_actions` is set, any blocked action returns:
+```json
+{"error": "action 'delete' is not allowed by config"}
+```
 
 ## Output
 
