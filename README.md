@@ -78,6 +78,11 @@ moneylover events list
 
 # User
 moneylover user info
+
+# Config
+moneylover config set-allowed-actions list,add
+moneylover config get
+moneylover config reset
 ```
 
 ## Configuration
