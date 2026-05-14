@@ -17,20 +17,3 @@ func (c *Client) BudgetAdd(categoryID string, amount float64, walletID string, s
 	}
 	return c.Post("/budget/add", body)
 }
-
-func (c *Client) BudgetEdit(budgetID string, categoryID string, amount float64, walletID string, startDate string, endDate string, isRepeat bool) (json.RawMessage, error) {
-	body := map[string]any{
-		"budgetId":   budgetID,
-		"categoryId": categoryID,
-		"amount":     amount,
-		"walletId":   walletID,
-		"startDate":  startDate,
-		"endDate":    endDate,
-		"isRepeat":   isRepeat,
-	}
-	return c.Post("/budget/edit", body)
-}
-
-func (c *Client) BudgetDelete(budgetID string) (json.RawMessage, error) {
-	return c.Post("/budget/delete", map[string]any{"_id": budgetID})
-}

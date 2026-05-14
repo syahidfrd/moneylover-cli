@@ -15,9 +15,6 @@ var transactionsListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List transactions",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("list"); err != nil {
-			return err
-		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -38,9 +35,6 @@ var transactionsAddCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new transaction",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("add"); err != nil {
-			return err
-		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -59,59 +53,10 @@ var transactionsAddCmd = &cobra.Command{
 	},
 }
 
-var transactionsEditCmd = &cobra.Command{
-	Use:   "edit",
-	Short: "Edit a transaction",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("edit"); err != nil {
-			return err
-		}
-		client, err := newClient()
-		if err != nil {
-			return err
-		}
-		id, _ := cmd.Flags().GetString("id")
-		wallet, _ := cmd.Flags().GetString("wallet")
-		category, _ := cmd.Flags().GetString("category")
-		amount, _ := cmd.Flags().GetFloat64("amount")
-		note, _ := cmd.Flags().GetString("note")
-		date, _ := cmd.Flags().GetString("date")
-
-		data, err := client.TransactionEdit(id, wallet, category, amount, note, date)
-		if err != nil {
-			return err
-		}
-		return outputJSON(data)
-	},
-}
-
-var transactionsDeleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Delete a transaction",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("delete"); err != nil {
-			return err
-		}
-		client, err := newClient()
-		if err != nil {
-			return err
-		}
-		id, _ := cmd.Flags().GetString("id")
-		data, err := client.TransactionDelete(id)
-		if err != nil {
-			return err
-		}
-		return outputJSON(data)
-	},
-}
-
 var transactionsDebtsCmd = &cobra.Command{
 	Use:   "debts",
 	Short: "List debts/loans",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("debts"); err != nil {
-			return err
-		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -144,28 +89,11 @@ func init() {
 	transactionsAddCmd.MarkFlagRequired("amount")
 	transactionsAddCmd.MarkFlagRequired("date")
 
-	transactionsEditCmd.Flags().String("id", "", "transaction ID (required)")
-	transactionsEditCmd.Flags().String("wallet", "", "wallet ID (required)")
-	transactionsEditCmd.Flags().String("category", "", "category ID (required)")
-	transactionsEditCmd.Flags().Float64("amount", 0, "amount (required)")
-	transactionsEditCmd.Flags().String("note", "", "transaction note")
-	transactionsEditCmd.Flags().String("date", "", "display date YYYY-MM-DD (required)")
-	transactionsEditCmd.MarkFlagRequired("id")
-	transactionsEditCmd.MarkFlagRequired("wallet")
-	transactionsEditCmd.MarkFlagRequired("category")
-	transactionsEditCmd.MarkFlagRequired("amount")
-	transactionsEditCmd.MarkFlagRequired("date")
-
-	transactionsDeleteCmd.Flags().String("id", "", "transaction ID (required)")
-	transactionsDeleteCmd.MarkFlagRequired("id")
-
 	transactionsDebtsCmd.Flags().String("wallets", "", "comma-separated wallet IDs (required)")
 	transactionsDebtsCmd.MarkFlagRequired("wallets")
 
 	transactionsCmd.AddCommand(transactionsListCmd)
 	transactionsCmd.AddCommand(transactionsAddCmd)
-	transactionsCmd.AddCommand(transactionsEditCmd)
-	transactionsCmd.AddCommand(transactionsDeleteCmd)
 	transactionsCmd.AddCommand(transactionsDebtsCmd)
 	rootCmd.AddCommand(transactionsCmd)
 }

@@ -51,38 +51,25 @@ moneylover auth status
 # Wallets
 moneylover wallets list
 moneylover wallets add --name "BCA" --currency-id 44
-moneylover wallets edit --id <wallet_id> --name "New Name"
-moneylover wallets delete --id <wallet_id>
 
 # Transactions
 moneylover transactions list --wallet all --start 2026-05-01 --end 2026-05-31
 moneylover transactions add --wallet <wallet_id> --category <category_id> --amount 50000 --note "Lunch" --date 2026-05-14
-moneylover transactions edit --id <tx_id> --wallet <wallet_id> --category <category_id> --amount 60000 --note "Dinner" --date 2026-05-14
-moneylover transactions delete --id <tx_id>
 moneylover transactions debts --wallets <wallet_id_1>,<wallet_id_2>
 
 # Categories
 moneylover categories list
 moneylover categories add --name "Transport" --type 2 --icon ic_category_transport --wallet <wallet_id>
-moneylover categories edit --id <category_id> --name "New Name"
-moneylover categories delete --id <category_id>
 
 # Budgets
 moneylover budgets list
 moneylover budgets add --category <category_id> --amount 500000 --wallet <wallet_id> --start 2026-05-01 --end 2026-05-31 --repeat
-moneylover budgets edit --id <budget_id> --category <category_id> --amount 600000 --wallet <wallet_id> --start 2026-05-01 --end 2026-05-31
-moneylover budgets delete --id <budget_id>
 
 # Events
 moneylover events list
 
 # User
 moneylover user info
-
-# Config
-moneylover config set-allowed-actions list,add
-moneylover config get
-moneylover config reset
 ```
 
 ## Configuration
@@ -90,29 +77,6 @@ moneylover config reset
 | Option | Env Var | Default | Description |
 |--------|---------|---------|-------------|
 | `--token-path` | `MONEYLOVER_TOKEN_PATH` | `~/.config/moneylover/token.json` | Path to token file |
-| `--config-path` | `MONEYLOVER_CONFIG_PATH` | `~/.config/moneylover/config.json` | Path to config file |
-
-### Allowed Actions
-
-Restrict which actions the CLI can perform. Useful for agent safety — prevent accidental deletes or edits.
-
-```bash
-# Only allow list and add
-moneylover config set-allowed-actions list,add
-
-# Show current config
-moneylover config get
-
-# Reset to allow all actions
-moneylover config reset
-```
-
-Available actions: `list`, `add`, `edit`, `delete`, `debts`, `info`, `login`, `callback`, `status`
-
-When `allowed_actions` is set, any blocked action returns:
-```json
-{"error": "action 'delete' is not allowed by config"}
-```
 
 ## Output
 

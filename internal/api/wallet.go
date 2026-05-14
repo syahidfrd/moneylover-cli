@@ -24,19 +24,3 @@ func (c *Client) WalletAdd(name string, currencyID int, icon string, accountType
 	}
 	return c.Post("/wallet/add", body)
 }
-
-func (c *Client) WalletEdit(id string, name string, icon string, currencyID int, accountType int) (json.RawMessage, error) {
-	body := map[string]any{
-		"_id":           id,
-		"account_type":  accountType,
-		"name":          name,
-		"exclude_total": false,
-		"icon":          icon,
-		"currency_id":   currencyID,
-	}
-	return c.Post("/wallet/edit", body)
-}
-
-func (c *Client) WalletDelete(id string) (json.RawMessage, error) {
-	return c.Post("/wallet/delete", map[string]any{"_id": id})
-}

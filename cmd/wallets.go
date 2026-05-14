@@ -19,9 +19,6 @@ var walletsListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all wallets",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("list"); err != nil {
-			return err
-		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -38,9 +35,6 @@ var walletsAddCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new wallet",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("add"); err != nil {
-			return err
-		}
 		client, err := newClient()
 		if err != nil {
 			return err
@@ -53,51 +47,6 @@ var walletsAddCmd = &cobra.Command{
 
 		hasBalance := cmd.Flags().Changed("balance")
 		data, err := client.WalletAdd(name, currencyID, icon, accountType, hasBalance, balance)
-		if err != nil {
-			return err
-		}
-		return outputJSON(data)
-	},
-}
-
-var walletsEditCmd = &cobra.Command{
-	Use:   "edit",
-	Short: "Edit a wallet",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("edit"); err != nil {
-			return err
-		}
-		client, err := newClient()
-		if err != nil {
-			return err
-		}
-		id, _ := cmd.Flags().GetString("id")
-		name, _ := cmd.Flags().GetString("name")
-		icon, _ := cmd.Flags().GetString("icon")
-		currencyID, _ := cmd.Flags().GetInt("currency-id")
-		accountType, _ := cmd.Flags().GetInt("account-type")
-
-		data, err := client.WalletEdit(id, name, icon, currencyID, accountType)
-		if err != nil {
-			return err
-		}
-		return outputJSON(data)
-	},
-}
-
-var walletsDeleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Delete a wallet",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkAction("delete"); err != nil {
-			return err
-		}
-		client, err := newClient()
-		if err != nil {
-			return err
-		}
-		id, _ := cmd.Flags().GetString("id")
-		data, err := client.WalletDelete(id)
 		if err != nil {
 			return err
 		}
@@ -129,20 +78,7 @@ func init() {
 	walletsAddCmd.Flags().Float64("balance", 0, "initial balance")
 	walletsAddCmd.MarkFlagRequired("name")
 
-	walletsEditCmd.Flags().String("id", "", "wallet ID (required)")
-	walletsEditCmd.Flags().String("name", "", "wallet name (required)")
-	walletsEditCmd.Flags().String("icon", "icon_80", "wallet icon")
-	walletsEditCmd.Flags().Int("currency-id", 44, "currency ID")
-	walletsEditCmd.Flags().Int("account-type", 0, "account type")
-	walletsEditCmd.MarkFlagRequired("id")
-	walletsEditCmd.MarkFlagRequired("name")
-
-	walletsDeleteCmd.Flags().String("id", "", "wallet ID (required)")
-	walletsDeleteCmd.MarkFlagRequired("id")
-
 	walletsCmd.AddCommand(walletsListCmd)
 	walletsCmd.AddCommand(walletsAddCmd)
-	walletsCmd.AddCommand(walletsEditCmd)
-	walletsCmd.AddCommand(walletsDeleteCmd)
 	rootCmd.AddCommand(walletsCmd)
 }

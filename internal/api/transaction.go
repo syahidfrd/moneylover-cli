@@ -28,31 +28,6 @@ func (c *Client) TransactionAdd(wallet string, category string, amount float64, 
 	return c.Post("/transaction/add", body)
 }
 
-func (c *Client) TransactionEdit(id string, wallet string, category string, amount float64, note string, date string) (json.RawMessage, error) {
-	body := map[string]any{
-		"_id":            id,
-		"with":           []string{},
-		"account":        wallet,
-		"category":       category,
-		"amount":         amount,
-		"note":           note,
-		"displayDate":    date,
-		"event":          "",
-		"exclude_report": false,
-		"longtitude":     0,
-		"latitude":       0,
-		"image":          "",
-	}
-	return c.Post("/transaction/edit", body)
-}
-
-func (c *Client) TransactionDelete(id string) (json.RawMessage, error) {
-	return c.Post("/transaction/delete", map[string]any{
-		"_id":        id,
-		"delRelated": false,
-	})
-}
-
 func (c *Client) TransactionDebts(wallets []string) (json.RawMessage, error) {
 	return c.Post("/transaction/debts", map[string]any{
 		"accounts": wallets,

@@ -1,6 +1,6 @@
 ---
 name: moneylover-transactions
-description: "Money Lover: Manage transactions (list, add, edit, delete, debts)."
+description: "Money Lover: Manage transactions (list, add, debts)."
 metadata:
   version: 0.1.0
   requires:
@@ -49,35 +49,6 @@ moneylover transactions add --wallet <ID> --category <ID> --amount <N> --date <D
 | `--date` | ✓ | — | Display date (YYYY-MM-DD) |
 | `--note` | — | "" | Transaction note/description |
 
-### edit
-
-Edit an existing transaction.
-
-```bash
-moneylover transactions edit --id <ID> --wallet <ID> --category <ID> --amount <N> --date <DATE> [--note <TEXT>]
-```
-
-| Flag | Required | Default | Description |
-|------|----------|---------|-------------|
-| `--id` | ✓ | — | Transaction ID |
-| `--wallet` | ✓ | — | Wallet ID |
-| `--category` | ✓ | — | Category ID |
-| `--amount` | ✓ | — | Transaction amount |
-| `--date` | ✓ | — | Display date (YYYY-MM-DD) |
-| `--note` | — | "" | Transaction note/description |
-
-### delete
-
-Delete a transaction.
-
-```bash
-moneylover transactions delete --id <ID>
-```
-
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--id` | ✓ | Transaction ID |
-
 ### debts
 
 List debt/loan transactions.
@@ -96,7 +67,5 @@ moneylover transactions debts --wallets <IDs>
 moneylover transactions list --wallet all --start 2026-05-01 --end 2026-05-31
 moneylover transactions list --wallet "57F837F5CC7741728E264465383B5153" --start 2026-05-01 --end 2026-05-14
 moneylover transactions add --wallet "57F837F5CC7741728E264465383B5153" --category "A2AC40F7745746D1843B11E6F7640B50" --amount 50000 --note "Lunch" --date 2026-05-14
-moneylover transactions edit --id "web06bd0e91f45809ffe11004fe36e44" --wallet "57F837F5CC7741728E264465383B5153" --category "A2AC40F7745746D1843B11E6F7640B50" --amount 60000 --note "Dinner" --date 2026-05-14
-moneylover transactions delete --id "web06bd0e91f45809ffe11004fe36e44"
 moneylover transactions debts --wallets "57F837F5CC7741728E264465383B5153,065EFEA4415444CE9B289C1328A6EEB3"
 ```
