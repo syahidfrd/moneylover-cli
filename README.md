@@ -7,7 +7,7 @@ Unofficial CLI for the [Money Lover](https://moneylover.me) personal finance app
 ### Homebrew (macOS/Linux)
 
 ```bash
-brew install syahidfrd/tap/moneylover
+brew install syahidfrd/tap/moneylover-cli
 ```
 
 ### Go install
@@ -19,6 +19,12 @@ go install github.com/syahidfrd/moneylover-cli@latest
 ### Binary download
 
 Download from [GitHub Releases](https://github.com/syahidfrd/moneylover-cli/releases).
+
+### Shell script
+
+```bash
+curl -sSL https://raw.githubusercontent.com/syahidfrd/moneylover-cli/main/install.sh | bash
+```
 
 ## Setup
 

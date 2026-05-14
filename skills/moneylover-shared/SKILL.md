@@ -16,7 +16,7 @@ The `moneylover` binary must be on `$PATH`. Install via:
 
 ```bash
 # Homebrew
-brew install syahidfrd/tap/moneylover
+brew install syahidfrd/tap/moneylover-cli
 
 # Go install
 go install github.com/syahidfrd/moneylover-cli@latest
