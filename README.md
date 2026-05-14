@@ -16,15 +16,15 @@ brew install syahidfrd/tap/moneylover-cli
 go install github.com/syahidfrd/moneylover-cli@latest
 ```
 
-### Binary download
-
-Download from [GitHub Releases](https://github.com/syahidfrd/moneylover-cli/releases).
-
 ### Shell script
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/syahidfrd/moneylover-cli/main/install.sh | bash
 ```
+
+### Binary download
+
+Download from [GitHub Releases](https://github.com/syahidfrd/moneylover-cli/releases).
 
 ## Setup
 
@@ -37,6 +37,8 @@ moneylover auth login
 moneylover auth callback "https://web.moneylover.me/login?access_token=...&refresh_token=...&expire=...&status=true"
 # → {"status":"login_success"}
 ```
+
+> Note: After login, the browser may show a "not found" page. This is expected. Just copy the full URL from the address bar.
 
 ## Usage
 
